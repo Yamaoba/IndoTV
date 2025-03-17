@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/hls-video-element@1.2/+esm"
+    ></script>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/media-chrome@4/+esm"
+    ></script>
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="style.css" />
+    <title>CNBC Indonesia Live</title>
+  </head>
+  <body>
+    <div class="container">
+      <div id="main">
+        <media-controller style="aspect-ratio: 16/9">
+          <hls-video
+            src="http://localhost:5000/proxy/tv/master.m3u8"
+            slot="media"
+            crossorigin="anonymous"
+            id="IPTV"
+            autoplay
+          ></hls-video>
+          <media-loading-indicator
+            slot="centered-chrome"
+            noautohide
+          ></media-loading-indicator>
+          <media-control-bar>
+            <media-play-button></media-play-button>
+            <media-seek-backward-button></media-seek-backward-button>
+            <media-seek-forward-button></media-seek-forward-button>
+            <media-mute-button></media-mute-button>
+            <media-volume-range></media-volume-range>
+            <media-time-range></media-time-range>
+            <media-time-display></media-time-display>
+            <media-fullscreen-button></media-fullscreen-button>
+          </media-control-bar>
+        </media-controller>
+      </div>
+      <div id="sidebar">
+        <button id="cnbc" onclick="loadVideo('cnbc')">CNBC</button>
+        <button id="moji" onclick="loadVideo('moji')">MOJI TV</button>
+        <button id="moji" onclick="loadVideo('trans7')">Trans 7 (WM)</button>
+        <button id="moji" onclick="loadVideo('transTV')">Trans TV (WM)</button>
+      </div>
+    </div>
+    <script>
+      const video = document.getElementById("IPTV");
+
+      // Fungsi untuk memuat video berdasarkan key
+      async function loadVideo(key) {
+        try {
+          // Set src pada elemen video dengan key sebagai bagian dari path
+          video.src = `http://localhost:5000/proxy/${key}/master.m3u8`;
+        } catch (error) {
+          console.error("Error loading video:", error);
+        }
+      }
+    </script>
+  </body>
+</html>

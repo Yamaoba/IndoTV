@@ -1,0 +1,22 @@
+div {
+  border: 10px solid red;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  border: 10px solid greenyellow;
+  justify-content: center;
+}
+
+#main {
+  border: 10px solid blue;
+}
+
+#main:hover {
+  border-color: orange;
+}
+
+#sidebar {
+  background-color: black;
+}
