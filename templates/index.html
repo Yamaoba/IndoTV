@@ -11,16 +11,16 @@
       type="module"
       src="https://cdn.jsdelivr.net/npm/media-chrome@4/+esm"
     ></script>
-    <link rel="stylesheet" href="normalize.css" />
-    <link rel="stylesheet" href="style.css" />
-    <title>CNBC Indonesia Live</title>
+    <link rel="stylesheet" href="/static/normalize.css" />
+    <link rel="stylesheet" href="/static/style.css" />
+    <title>Indonesian TV</title>
   </head>
   <body>
     <div class="container">
       <div id="main">
         <media-controller style="aspect-ratio: 16/9">
           <hls-video
-            src="http://localhost:5000/proxy/tv/master.m3u8"
+            src=""
             slot="media"
             crossorigin="anonymous"
             id="IPTV"
@@ -51,12 +51,13 @@
     </div>
     <script>
       const video = document.getElementById("IPTV");
+      video.src = window.location.href;
 
       // Fungsi untuk memuat video berdasarkan key
       async function loadVideo(key) {
         try {
           // Set src pada elemen video dengan key sebagai bagian dari path
-          video.src = `http://localhost:5000/proxy/${key}/master.m3u8`;
+          video.src = window.location.href + `/${key}/master.m3u8`;
         } catch (error) {
           console.error("Error loading video:", error);
         }

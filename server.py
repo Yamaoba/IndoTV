@@ -1,7 +1,8 @@
-from flask import Flask, request, Response
+from flask import Flask, request, Response, render_template
 import requests
 from urllib.parse import unquote, urljoin
 from flask_cors import CORS
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -13,6 +14,12 @@ M3U8_URLS = {
     "trans7": "https://video.detik.com/trans7/smil:trans7.smil/index.m3u8",
     "transTV": "https://video.detik.com/transtv/smil:transtv.smil/index.m3u8"
 }
+
+@app.route("/")
+def index():
+    template_folder=os.path.join(os.path.dirname(os.getcwd()), 'templates')
+    return render_template("index.html")
+
 
 # Proxy untuk file .m3u8
 @app.route('/proxy/<key>/master.m3u8')
@@ -67,6 +74,3 @@ def proxy_segment(key, subpath):
     flask_response = Response(response.content, content_type=content_type)
     flask_response.headers.add('Access-Control-Allow-Origin', '*')
     return flask_response
-
-if __name__ == '__main__':
-    app.run(debug=True)
