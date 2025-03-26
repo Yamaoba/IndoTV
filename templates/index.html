@@ -11,6 +11,10 @@
       type="module"
       src="https://cdn.jsdelivr.net/npm/media-chrome@4/+esm"
     ></script>
+    <script
+      type="module"
+      src="https://cdn.jsdelivr.net/npm/dash-video-element@0.0/+esm"
+    ></script>
     <link rel="stylesheet" href="/static/normalize.css" />
     <link rel="stylesheet" href="/static/style.css" />
     <title>Indonesian TV</title>
@@ -47,17 +51,27 @@
         <button id="moji" onclick="loadVideo('moji')">MOJI TV</button>
         <button id="moji" onclick="loadVideo('trans7')">Trans 7 (WM)</button>
         <button id="moji" onclick="loadVideo('transTV')">Trans TV (WM)</button>
+        <button id="moji" onclick="loadVideo('indosiar')">Indosiar</button>
+        <button id="moji" onclick="loadMPD('sportstars')">Sportstars 2</button>
       </div>
     </div>
     <script>
       const video = document.getElementById("IPTV");
-      video.src = window.location.href;
 
       // Fungsi untuk memuat video berdasarkan key
       async function loadVideo(key) {
         try {
           // Set src pada elemen video dengan key sebagai bagian dari path
-          video.src = window.location.href + `/${key}/master.m3u8`;
+          video.src = window.location.href + `proxy/${key}/master.m3u8`;
+        } catch (error) {
+          console.error("Error loading video:", error);
+        }
+      }
+
+      async function loadMPD(key) {
+        try {
+          // Set src pada elemen video dengan key sebagai bagian dari path
+          video.src = window.location.href + `proxy/mpd/${key}/master.m3u8`;
         } catch (error) {
           console.error("Error loading video:", error);
         }
