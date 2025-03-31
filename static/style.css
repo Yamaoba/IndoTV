@@ -1,22 +1,25 @@
-div {
-  border: 10px solid red;
+/* Change all text and icon colors in the player. */
+.vjs-matrix.video-js {
+  color: white;
 }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  border: 10px solid greenyellow;
-  justify-content: center;
+/* Change the border of the big play button. */
+.vjs-matrix .vjs-big-play-button {
+  border-color: white;
 }
 
-#main {
-  border: 10px solid blue;
+/* Change the color of various "bars". */
+.vjs-matrix .vjs-volume-level,
+.vjs-matrix .vjs-play-progress,
+.vjs-matrix .vjs-slider-bar {
+  background: white;
 }
 
-#main:hover {
-  border-color: orange;
-}
-
-#sidebar {
+/* The default color of control backgrounds is mostly black but with a little
+   bit of blue so it can still be seen on all-black video frames, which are common. */
+.video-js .vjs-control-bar {
+  /* IE8 - has no alpha support */
   background-color: black;
+  /* Opacity: 1.0 = 100%, 0.0 = 0% */
+  opacity: 0.7;
 }
